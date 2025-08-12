@@ -1,0 +1,40 @@
+# Virtual Environment
+venv/
+venv_py311/
+env/
+ENV/
+.venv/
+
+# Python Cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Build artifacts
+.buildozer/
+bin/
+build/
+dist/
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Logs
+*.log
+
+# Local config
+.env
+config.local.py
+
+# Temporary files
+*.tmp
+*.temp
