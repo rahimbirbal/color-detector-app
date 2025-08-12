@@ -18,8 +18,8 @@ source.include_exts = py,png,jpg,jpeg,kv,csv,txt
 version = 1.0
 
 # (list) Application requirements
-# Note: opencv-python doesn't work on Android, we'll use a workaround
-requirements = python3,kivy==2.1.0,numpy,pillow,pandas
+# Simplified requirements for better Android compatibility
+requirements = python3,kivy==2.1.0,numpy==1.24.4,pillow
 
 # (str) Supported orientation
 orientation = portrait
@@ -27,25 +27,13 @@ orientation = portrait
 # (bool) Indicate if the application should be fullscreen or not
 fullscreen = 0
 
-# (str) Presplash of the application
-#presplash.filename = %(source.dir)s/data/presplash.png
-
-# (str) Icon of the application  
-#icon.filename = %(source.dir)s/data/icon.png
-
 [buildozer]
 # (int) Log level (0 = error only, 1 = info, 2 = debug (with command output))
 log_level = 2
 
-# (str) Path to build artifact storage, absolute or relative to spec file
-# build_dir = ./.buildozer
-
-# (str) Path to build output (i.e. .apk, .aab, .ipa) storage
-# bin_dir = ./bin
-
 [android]
 # (int) Target Android API, should be as high as possible.
-android.api = 33
+android.api = 34
 
 # (int) Minimum API your APK / AAB will support.
 android.minapi = 21
@@ -54,7 +42,7 @@ android.minapi = 21
 android.ndk = 25b
 
 # (str) Android SDK version to use  
-android.sdk = 33
+android.sdk = 34
 
 # (list) Permissions
 android.permissions = CAMERA,WRITE_EXTERNAL_STORAGE,READ_EXTERNAL_STORAGE,INTERNET
@@ -65,31 +53,53 @@ android.private_storage = True
 # (str) Android logcat filters to use
 android.logcat_filters = *:S python:D
 
-# (bool) Copy library instead of making a libpymodules.so
-android.copy_libs = 1
-
 # (str) The Android arch to build for, choices: armeabi-v7a, arm64-v8a, x86, x86_64
-android.archs = arm64-v8a, armeabi-v7a
+android.archs = arm64-v8a
 
 # (bool) enables Android auto backup feature (Android API >=23)
 android.allow_backup = True
 
-# (str) XML file for additional android manifest entries
-# android.manifest_placeholders = [:]
+# (str) Bootstrap to use for android builds
+# Run `buildozer android possible_bootstraps` to see available bootstraps.
+# android.bootstrap = sdl2
 
-# (str) Activity to start when launching the application
-# android.activity_class_name = org.kivy.android.PythonActivity
+# (str) Android entry point, default is ok for Kivy-based app
+android.entrypoint = org.kivy.android.PythonActivity
 
-# (str) Full name including package path of the Java class that implements Android Activity
-# use that parameter together with android.activity_class_name
-# android.activity_class_name = org.kivy.android.PythonActivity
+# (str) Full name including package path of the Java class that implements Python Service
+# android.service_class_name = org.kivy.android.PythonService
+
+# (str) Android app theme, default is ok for Kivy-based app
+# android.apptheme = "@android:style/Theme.NoTitleBar"
+
+# (list) Pattern to whitelist for the whole project. More details
+# https://python-for-android.readthedocs.io/en/latest/buildoptions/#whitelist
+# android.whitelist =
+
+# (str) Path to a custom whitelist file
+# android.whitelist_src =
+
+# (str) Path to a custom blacklist file
+# android.blacklist_src =
+
+# (str) Path to the android-24 SDK platform
+# p4a.local_recipes =
 
 # (str) python-for-android branch to use, defaults to master
-# p4a.branch = master
+p4a.branch = master
 
-# (str) OUYA Console category. Should be one of GAME or APP
-# If you leave this blank, OUYA support will not be enabled
-# android.ouya.category = GAME
+# (str) python-for-android git clone directory (if empty, it will be automatically cloned from github)
+# p4a.source_dir =
 
-# (str) Filename of OUYA Console icon. It must be a 732x412 png image.
-# android.ouya.icon.filename = %(source.dir)s/data/ouya_icon.png
+# (str) The directory in which python-for-android should look for your own build recipes (if any)
+# p4a.local_recipes =
+
+# (str) Filename of a directory that will be turned into the root of the java build, so you can put your
+# java files in there.
+# android.java_src_dir =
+
+# (str) python-for-android whitelist
+# android.p4a_whitelist =
+
+# (str) python-for-android blacklist
+# android.p4a_blacklist =
